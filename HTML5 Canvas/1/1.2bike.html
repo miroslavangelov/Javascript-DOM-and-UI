@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<style>
+canvas {
+	border: 2px solid black;
+}
+</style>
+<body>
+<canvas id="the-canvas" width="800" height="500" />
+
+</body>
+<script>
+
+	var canvas = document.getElementById("the-canvas");
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle = "skyblue";
+	ctx.strokeStyle = "blue";
+	
+	ctx.beginPath();
+	ctx.arc(200, 300, 50, 0, 2*Math.PI, false);
+	ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.arc(385, 300, 50, 0, 2*Math.PI, false);
+	ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.fillStyle = "#fff";
+	ctx.arc(280, 300, 15, 0, 2*Math.PI, false);
+	ctx.stroke();
+	
+	
+	ctx.moveTo(270, 290);
+	ctx.lineTo(257, 277);
+	ctx.moveTo(290, 310);
+	ctx.lineTo(303, 323);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.moveTo(385, 300);
+	ctx.lineTo(370, 180);
+	ctx.moveTo(370, 180);
+	ctx.lineTo(410, 140);
+	ctx.moveTo(370, 180);
+	ctx.lineTo(320, 200);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.moveTo(280, 300);
+	ctx.lineTo(250, 210);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.moveTo(225, 210);
+	ctx.lineTo(275, 210);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.moveTo(200, 300);
+	ctx.lineTo(280, 300);
+	ctx.moveTo(280, 300);
+	ctx.lineTo(374, 220);
+	ctx.moveTo(374, 220);
+	ctx.lineTo(256, 230);
+	ctx.moveTo(256, 230);
+	ctx.lineTo(200, 300);
+	ctx.stroke();
+
+</script>
+</html>

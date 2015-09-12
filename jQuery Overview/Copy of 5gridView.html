@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Grid view</title>
+<script src="jquery-1.11.2.min.js"></script>
+<style>
+	thead {
+		background-color:#A6A6A6;
+	}
+		tbody tr:nth-child(2n+1) {
+		background-color:#D9D9D9;
+	}
+	td, th {
+		border: 1px solid black;
+	}
+	table {
+		border-collapse: collapse;
+		text-align:center;
+	}
+
+</style>
+</head>
+<body>
+	<form>
+		<input type="button" name="row" value="Add row" />
+		<input type="text" name="contentOfData1" placeholder="Add content for cells"/>
+		<input type="text" name="contentOfData2" placeholder="Add content for cells"/>
+		<input type="text" name="contentOfData3" placeholder="Add content for cells"/>
+		<input type="button" name="headerRow" value="Add header row" />
+		<input type="button" name="nested" value="Add nested table" />
+		<input type="button" name="leaveNested" value="Leave nested table" />
+	</form>
+</body>
+<script>
+	var mainHeader = false,
+		nestedTable = false,
+		nestedHeader = false,
+		countNestedTables = 1;
+	$('<table/>').appendTo('body').addClass("main");
+	$("input[name='row']").click(function () {
+		if ($('input[name="contentOfData1"]').val() === ""
+			|| $('input[name="contentOfData2"]').val() === ""
+			|| $('input[name="contentOfData3"]').val() === "") {
+				return;
+			}
+		if (countNestedTables === 0) {
+			countNestedTables++;
+		}
+			if (nestedTable === false) {
+				$(".main").last().append("<tr />");
+				
+					$("tr").last().append("<td>" + $('input[name="contentOfData1"]').val() + '</td>');
+					$("tr").last().append("<td>" + $('input[name="contentOfData2"]').val() + '</td>');
+					$("tr").last().append("<td>" + $('input[name="contentOfData3"]').val() + '</td>');
+			
+				
+			}
+			else {
+				rows();
+			}
+	});
+	
+	$("input[name='headerRow']").click(function () {
+		if ($('input[name="contentOfData1"]').val() === ""
+			|| $('input[name="contentOfData2"]').val() === ""
+			|| $('input[name="contentOfData3"]').val() === "") {
+				return;
+		}
+		if (countNestedTables === 0) {
+			countNestedTables++;
+		}
+		if (nestedTable) {
+			if (nestedHeader) {
+				return;
+			}
+			else {
+				$("table").last().prepend("<tr class='nested'></tr>");
+				
+					$('.nested').last().append("<th>" + $('input[name="contentOfData1"]').val() + '</th>');
+					$('.nested').last().append("<th>" + $('input[name="contentOfData2"]').val() + '</th>');
+					$('.nested').last().append("<th>" + $('input[name="contentOfData3"]').val() + '</th>');
+				
+				nestedHeader = true;
+			}
+		}
+		else {
+			header();
+		}
+	});
+	
+	$("input[name='nested']").click(function () {
+		if (countNestedTables === 3 || countNestedTables === 0) {
+			return;
+		}
+		else {
+			$("tr").last().append("<table />");
+			nestedTable = true;
+			nestedHeader = false;
+			countNestedTables++;
+		}
+	});
+	
+	$("input[name='leaveNested']").click(function () {
+		nestedTable = false;
+		countNestedTables = 0;
+	});
+	
+	
+	
+	function rows () {
+		$("table").last().append("<tr />");
+		
+			$("tr").last().append("<td>" + $('input[name="contentOfData1"]').val() + '</td>');
+			$("tr").last().append("<td>" + $('input[name="contentOfData2"]').val() + '</td>');
+			$("tr").last().append("<td>" + $('input[name="contentOfData3"]').val() + '</td>');
+			
+		
+	}
+	function header () {
+		if (mainHeader) {
+			return;
+		}
+		else {
+			$("table").prepend("<tr />");
+			
+				$("tr").first().append("<th>" + $('input[name="contentOfData1"]').val() + "</th>");
+				$("tr").first().append("<th>" + $('input[name="contentOfData2"]').val() + "</th>");
+				$("tr").first().append("<th>" + $('input[name="contentOfData3"]').val() + "</th>");
+			
+			mainHeader = true;
+		}
+	}
+</script>
+</html>

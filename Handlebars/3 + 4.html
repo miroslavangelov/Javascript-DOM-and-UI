@@ -1,0 +1,115 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Plugin with Handlebars and jQuery</title>
+<style>
+	thead {
+		background-color:#A6A6A6;
+	}
+	tbody tr:nth-child(2n+1) {
+		background-color:#D9D9D9;
+	}
+	td, th {
+		border: 1px solid black;
+	}
+	table {
+		border-collapse: collapse;
+		text-align:center;
+	}
+</style>
+</head>
+<body>
+	<ul id="books-list" data-template="book-item-template"></ul>
+	<table>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Mark</th>
+			</tr>
+		</thead>
+		<tbody id="students-table" data-template="students-row-template">	
+		</tbody>
+	</table>
+	<p></p>
+	<table>
+	  <thead>
+		<tr><th>#</th><th>Name</th><th>Mark</th></tr>
+	  </thead>
+	  <tbody id="students-table1">
+		<tr class="student-row">
+		  <td>{{number}}</td>
+		  <td>{{name}}</td>
+		  <td>{{mark}}</td>
+		</tr>
+	  </tbody>
+	</table>
+<script src="jquery-1.11.2.min.js"></script>
+<script src="handlebars-v3.0.0.js"></script>
+<script id="book-item-template" type="text/x-handlebars-template">
+	{{#books}}
+	<li class="book-item">
+		<a href="/#books/{{id}}">
+			<strong>{{title}}</strong>
+		</a>
+	</li>
+	{{/books}}
+</script>
+<script id="students-row-template" type="text/x-handlebars-template">
+	{{#students}}
+	  <tr class="student-row">
+		<td>{{number}}</td>
+		<td>{{name}}</td>
+		<td>{{mark}}</td>
+	  </tr>
+   {{/students}}
+</script>
+<script>
+	(function($) {
+		$.fn.listView = function(parameters) {
+				var self = $(this),
+				templateString,
+				templateId = $("#" + self.attr("data-template")).html(),
+				template,
+				currentProp;
+
+				if (templateId !== undefined) {
+					templateString = templateId;
+				}
+				else {
+					for (var prop in parameters) {
+						currentProp = prop;
+					}
+					templateString = '{{#each ' + currentProp + '}}';
+					templateString += self.html();
+					templateString += '{{/each}}';
+				}
+				template = Handlebars.compile(templateString);
+				self.html(template(parameters));
+				return self;	
+		}
+	}(jQuery));
+	
+	var students = { students: [
+			{ number: 1, name: 'Petar Petrov', mark: 5.5 },
+			{ number: 2, name: 'Stamat Georgiev', mark: 4.7 },
+			{ number: 3, name: 'Maria Todorova', mark: 6 },
+			{ number: 4, name: 'Georgi Geshov', mark: 3.7 },
+			{ number: 5, name: 'Anna Hristova', mark: 4 },
+		]},
+		books =  { books: [
+			{ id: 1, title: 'JavaScript: The good parts'},
+			{ id: 2, title: 'Secrets of the JavaScript Ninja'},
+			{ id: 3, title: 'Core HTML5 Canvas: Graphics, Animation, and Game Development'},
+			{ id: 4, title: 'JavaScript Patterns'},
+		]};
+		
+	$('#books-list').listView(books);
+	$("#students-table").listView(students);
+	$("#students-table1").listView(students);
+	
+</script>
+</body>
+
+</html>

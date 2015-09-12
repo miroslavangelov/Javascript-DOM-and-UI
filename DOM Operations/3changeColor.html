@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Color Input</title>
+</head>
+<body>
+	<form>
+		<p><label><input type="color" id="color" /> Color</label></p>
+		<p><label><input type="color" id="background"/> Background</label></p>
+		<textarea id="textarea">Text</textarea>
+	</form>
+<script>
+	var fontColor = document.getElementById("color"),
+		backgroundColor = document.getElementById("background"),
+		textArea = document.getElementById("textarea");
+	fontColor.addEventListener("change", function(){
+		textArea.style.color = fontColor.value;
+	});
+	backgroundColor.addEventListener("change", function () {
+		textArea.style.background = backgroundColor.value;
+	});
+</script>
+</body>
+</html>

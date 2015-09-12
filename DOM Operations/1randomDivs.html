@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Random Divs</title>
+<style>
+</style>
+</head>
+<body>
+<script type="text/javascript">
+for (var i = 0; i < 15; i++) {
+	var parameter = document.createElement("div"),
+		element = document.body,
+		strong = document.createElement("strong"),
+		text = document.createTextNode("div");
+	parameter.style.textAlign = "center";
+	parameter.style.borderStyle = "solid";
+	parameter.style.width = getRandomValue(20, 100) + "px";
+	parameter.style.height = getRandomValue(20, 100) + "px";
+	parameter.style.background = getRandomColor();
+	parameter.style.color = getRandomColor();
+	parameter.style.position = "absolute";
+	parameter.style.top = getRandomValue(0,100) + "%";
+	parameter.style.left = getRandomValue(0,100) + "%";
+	
+	strong.appendChild(text);
+	parameter.appendChild(strong);
+	
+	parameter.style.borderRadius = getRandomValue(0,100) + "%";
+	parameter.style.borderColor = getRandomColor();
+	parameter.style.borderWidth = getRandomValue(1,20) + "px";
+	
+	element.appendChild(parameter);
+	
+}
+function getRandomValue(min, max) {
+	return Math.floor(Math.random()*(max-min)+min);
+}
+
+function getRandomColor() {
+	var red = getRandomValue(0, 255),
+		green = getRandomValue(0, 255),
+		blue = getRandomValue(0, 255);
+	return "rgb(" + red + "," + green + "," + blue + ")";
+}
+
+</script>
+</body>
+</html>

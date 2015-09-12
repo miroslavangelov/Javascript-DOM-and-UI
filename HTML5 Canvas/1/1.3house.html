@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<style>
+canvas {
+	border: 2px solid black;
+}
+</style>
+<body>
+<canvas id="the-canvas" width="800" height="500" />
+
+</body>
+<script>
+
+	var canvas = document.getElementById("the-canvas");
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle = "#CC8FB9";
+	ctx.strokeStyle = "black";
+	//body
+	ctx.beginPath();
+	ctx.fillRect(200, 220, 250, 200);
+	ctx.strokeRect(200, 220, 250, 200);
+	ctx.fill();
+	ctx.stroke();
+	//roof
+	ctx.beginPath();
+	ctx.moveTo(200, 220);
+	ctx.lineTo(325, 100);
+	ctx.lineTo(450, 220);
+	ctx.fill();
+	ctx.stroke();
+	//chimney
+	ctx.beginPath();
+	drawElipse(ctx, 400, 410, 15, 0, 2*Math.PI, false, 1, 0.3);
+	ctx.lineTo(415, 200);
+	ctx.fillRect(385, 120, 30, 80);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.moveTo(385, 121);
+	ctx.lineTo(385, 200);
+	ctx.stroke();
+	//door
+	ctx.beginPath();
+	drawElipse(ctx, 270, 580, 40, 0, Math.PI, true, 1, 0.6);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.moveTo(270, 323);
+	ctx.lineTo(270, 420);
+	ctx.moveTo(230, 348);
+	ctx.lineTo(230, 420);
+	ctx.moveTo(310, 348);
+	ctx.lineTo(310, 420);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.arc(260, 390, 6, 0, 2*Math.PI, false);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.arc(280, 390, 6, 0, 2*Math.PI, false);
+	ctx.stroke();
+	
+	//windows
+	
+	ctx.fillStyle = "black";
+	
+	ctx.beginPath();
+	ctx.fillRect(210, 240, 50, 30);
+	ctx.fillRect(210, 272, 50, 30);
+	ctx.fillRect(262, 272, 50, 30);
+	ctx.fillRect(262, 240, 50, 30);
+	ctx.fillRect(335, 240, 50, 30);
+	ctx.fillRect(387, 240, 50, 30);
+	ctx.fillRect(387, 272, 50, 30);
+	ctx.fillRect(335, 272, 50, 30);
+	ctx.fillRect(335, 325, 50, 30);
+	ctx.fillRect(387, 325, 50, 30);
+	ctx.fillRect(387, 357, 50, 30);
+	ctx.fillRect(335, 357, 50, 30);
+	ctx.fill();
+	
+	
+	
+	function drawElipse(ctx, x, y, radius, start, end, clockwise, scalex, scaley) {
+		ctx.save();
+		ctx.scale(scalex, scaley);
+		ctx.beginPath();
+		ctx.arc(x, y, radius, start, end, clockwise);
+		ctx.fill();
+		ctx.stroke();
+		ctx.restore();
+	}
+
+</script>
+</html>

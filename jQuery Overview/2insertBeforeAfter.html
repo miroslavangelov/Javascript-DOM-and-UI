@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Insert eleemnts</title>
+<script src="jquery-1.11.2.min.js"></script>
+<style>
+	div {
+		background: #3366CC;
+		width: 100px;
+		height: 70px;
+		margin: 10px;
+		text-align: center;
+		color: white;
+		border-radius: 10px;
+	}
+	.target {
+		background: #33CC00;
+	}
+	form {
+		margin: 15px;
+	}
+</style>
+</head>
+<body>
+	<form>
+		<input type="button" name="before" value="Add before" />
+		<input type="button" name="after" value="Add after" />
+	</form>
+	<div class="target">Target</div>
+
+</body>
+<script>
+	$("input[name='after']").click(function() {
+		$("<div>After</div>").insertAfter(".target");
+	});
+	$("input[name='before']").click(function() {
+		$("<div>Before</div>").insertBefore(".target");
+	});
+</script>
+</html>

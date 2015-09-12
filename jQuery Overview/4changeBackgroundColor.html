@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Change backgorund color</title>
+<script src="jquery-1.11.2.min.js"></script>
+<style>
+	label {
+		background-color: white;
+	}
+</style>
+</head>
+<body>
+	<form>
+		<label>Change color</label>
+		<input type="color" name='changeColor'/>
+	</form>
+</body>
+<script>
+	$('input[name="changeColor"]').change(function () {
+		var color = $('input[name="changeColor"]').val();
+		$('body').css('background-color', color);
+	});
+</script>
+</html>

@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Slider</title>
+<script src="jquery-1.11.2.min.js"></script>
+<style>
+
+	li {
+		list-style-type: none;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		width: 50%;
+		display: none;
+	}
+
+
+	input[name="previous"] {
+		position: absolute;
+		top: 80px;
+		left: 120px;
+	}
+	input[name="next"] {
+		position: absolute;
+		top: 80px;
+		right: 120px;
+	}
+	.selected {
+		display: block;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li class="selected"><img src="images/cities11.jpg" height="195" width="500" /></li>
+		<li><img src="images/couple-and_city_new.jpg" height="195" width="500" />
+		<p>hello</p>
+		</li>
+		<li><img src="images/cities-in-the-sea.jpg" height="195" width="500" /></li>
+	</ul>
+	<input type="button" value="<" name="previous"/>
+	<input type="button" value=">" name="next"/>
+
+
+</body>
+<script>
+	var currentSlide = 0,
+		slides = $("li");
+		
+	$("input[name='next']").click(function() {
+		nextSlide();
+		stopInterval();
+	});
+	$("input[name='previous']").click(function() {
+		prevSlide();
+		stopInterval();
+		
+	});
+	
+	var setNextSlide = setInterval(nextSlide, 5000);
+	
+	
+	function stopInterval () {
+		clearInterval(setNextSlide);
+		setNextSlide = setInterval(nextSlide, 5000);
+	}
+	
+	function nextSlide() {
+		currentSlide++;
+		if (currentSlide > slides.length - 1) {
+			currentSlide = 0;
+			$("li").eq(slides.length-1).removeClass("selected");
+			$("li").eq(0).addClass("selected");
+		}
+		else {
+			$("li").eq(currentSlide-1).removeClass("selected");
+			$("li").eq(currentSlide).addClass("selected");
+			if (currentSlide === slides.length - 1) {
+				
+				currentSlide = -1;
+				
+			}
+		}
+	}
+	
+	function prevSlide() {
+		currentSlide--;
+		$("li").eq(currentSlide+1).removeClass("selected");
+		$("li").eq(currentSlide).addClass("selected");
+		if (currentSlide < 0) {
+			currentSlide = slides.length - 1;
+		}
+	}
+</script>
+</html>

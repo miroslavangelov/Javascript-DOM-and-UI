@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Dropdown list</title>
+<script src="jquery-1.11.2.min.js"></script>
+<style>
+	ul {
+		list-style-type: none;
+	}
+	li {
+		width: 100px;
+		height: 30px;
+		position: relative;
+		top: 30px;
+		left: 140px;
+		background-color: #33CC00;
+		border: 1px solid #33CC00;
+		border-radius: 10px;
+		color: white;
+		margin: 3px;
+		text-align: center;
+		font-family: Georgia, Serif;
+		cursor: pointer;	
+	}
+
+
+
+</style>
+</head>
+<body>
+
+	<select id="dropdown">
+	  <option value="1">One</option>
+	  <option value="2">Two</option>
+	  <option value="3">Three</option>
+	</select>
+</body>
+<script>
+	(function($) {
+		$.fn.dropdown = function() {
+			$(document).ready(function () {
+				$('#dropdown').css('display', 'none');
+				$('body').append('<div class="dropdown-list-container"><ul class="dropdown-list-options"><li class="dropdown-list-option" data-value="0">Select option</li><li class="dropdown-list-option" data-value="1">One</li><li class="dropdown-list-option" data-value="2">Two</li><li class="dropdown-list-option" data-value="3">Three</li></ul></div>');
+				$('li:not(:first-child)').css("display", "none");
+
+				$('li:first-child').click(function () {
+					$('li:not(:first-child)').css("display", "block");
+				});
+				$('li:not(:first-child)').click(function (){
+					var that = $(this),
+						currentIndex = that.index() - 1;
+					$('li:not(:first-child)').css("display", "none");
+					$('li:first-child').text(that.text());
+					$("option").eq(currentIndex).prop("selected", true);
+				});
+			});
+		}
+	}(jQuery));
+	$('#dropdown').dropdown();
+</script>
+</html>

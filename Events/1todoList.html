@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>TODO list</title>
+<style>
+</style>
+</head>
+<body>
+	<form>
+		<input type="text" placeholder="Add new item" name="addInput">
+		<input type="button" value="Add" name="add" />
+		<br />
+		<input type="button" value="Clear" name="clear" />
+		<br />
+		<input type="checkbox" checked />
+		<label>Learn HTML</label>
+		<br />
+		<input type="checkbox" />
+		<label>Learn Javascript</label>
+		<br />
+	</form>
+</body>
+<script>
+	var add = document.getElementsByName("add"),
+		clear = document.getElementsByName("clear");
+	add[0].addEventListener("click", function(){
+		var newElement = document.createElement("input"),
+			body = document.body,
+			inputAdd = document.getElementsByName("addInput")[0].value,
+			label = document.createElement("label"),
+			text = document.createTextNode(inputAdd);
+			br = document.createElement("br");
+		newElement.type = "checkbox";
+		label.appendChild(text);
+		body.appendChild(newElement);
+		body.appendChild(label);
+		body.appendChild(br);
+	});
+	var inputs = document.getElementsByTagName("input");
+	clear[0].addEventListener("click", function() {
+		
+			for (var i = 0, len = inputs.length; i < len; i++) {
+				if (inputs[i].type == "checkbox") {
+					if (inputs[i].checked == true) {
+						inputs[i].style.display = "none";
+						var sibl = inputs[i].nextElementSibling,
+							sibl1 = sibl.nextElementSibling;
+						sibl.style.display = "none";
+						sibl1.style.display = "none";
+					}
+				}
+			}
+	});
+</script>
+</html>

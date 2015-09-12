@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<style>
+canvas {
+	border: 2px solid black;
+}
+</style>
+<body>
+<canvas id="the-canvas" width="800" height="500" />
+
+</body>
+<script>
+
+	var canvas = document.getElementById("the-canvas");
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle = "skyblue";
+	ctx.strokeStyle = "blue";
+	//head
+	drawElipse(ctx, 200, 200, 50, 0, 2*Math.PI, false, 1, 1);
+	
+	//eyes
+	drawElipse(ctx, 170, 310, 8, 0, 2*Math.PI, false, 1, 0.6);
+	drawElipse(ctx, 210, 310, 8, 0, 2*Math.PI, false, 1, 0.6);
+	ctx.fill();
+	ctx.stroke();
+	ctx.fillStyle = "blue";
+	drawElipse(ctx, 332, 186, 4, 0, 2*Math.PI, false, 0.5, 1);
+	drawElipse(ctx, 412, 186, 4, 0, 2*Math.PI, false, 0.5, 1);
+	ctx.fill();
+	
+	//nose
+	ctx.strokeStyle = "blue";
+	ctx.moveTo(190, 188);
+	ctx.lineTo(180, 210);
+	ctx.moveTo(190, 210);
+	ctx.lineTo(180, 210);
+	ctx.stroke();
+	
+	//mouth
+	ctx.fillStyle = "skyblue";
+	ctx.strokeStyle = "blue";
+	ctx.save();
+	ctx.rotate(8*Math.PI /180);
+	drawElipse(ctx, 220, 570, 20, 0, 2*Math.PI, false, 1, 0.35);
+	ctx.restore();
+	ctx.fill();
+	ctx.stroke();
+	
+	//cylinder
+	
+	ctx.fillStyle = "yellow";
+	ctx.strokeStyle = "black";
+	drawElipse(ctx, 200, 610, 60, 0, 2*Math.PI, false, 1, 0.25);
+				ctx.fill();
+		ctx.stroke();
+		ctx.strokeStyle = "black";
+		
+	ctx.fillRect(170, 60, 60, 80);
+	drawElipse(ctx, 200, 350, 30, 0, Math.PI, false, 1, 0.40);
+				ctx.fill();
+		ctx.stroke();
+	ctx.fillRect(170, 60, 60, 80);
+	drawElipse(ctx, 200, 160, 30, 0, 2*Math.PI, true, 1, 0.40);
+			ctx.fill();
+		ctx.stroke();
+	ctx.beginPath();
+	ctx.strokeStyle = "black";
+	ctx.moveTo(170, 64);
+	ctx.lineTo(170, 140);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(230, 64);
+	ctx.lineTo(230, 140);
+	ctx.stroke();
+	
+	
+
+	function drawElipse(ctx, x, y, radius, start, end, clockwise, scalex, scaley) {
+		ctx.save();
+		ctx.scale(scalex, scaley);
+		ctx.beginPath();
+		ctx.arc(x, y, radius, start, end, clockwise);
+		ctx.fill();
+		ctx.stroke();
+		ctx.restore();
+	}
+
+</script>
+</html>

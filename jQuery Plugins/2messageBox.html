@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Message box</title>
+<script src="jquery-1.11.2.min.js"></script>
+<style>
+
+	div {
+		width: 100px;
+		height: 40px;
+		position: relative;
+		top: 30px;
+		left: 140px;
+		background-color: #33CC00;
+		border: 1px solid #33CC00;
+		border-radius: 10px;
+		color: white;
+		margin: 3px;
+		text-align: center;
+		font-family: Georgia, Serif;
+	}
+
+
+
+</style>
+</head>
+<body>
+	<form>
+		<input type='button' name="success" value="Success" />
+		<input type='button' name="error" value="Error" />
+	</form>
+</body>
+<script>
+	(function($) {
+		$.fn.messageBox = function() {
+
+			return {
+				success: function(message) {
+					$("div").text(message);
+					$("div").fadeIn(1000);
+					$("div").css({
+						'background-color': '#33CC00',
+						'border': '1px solid #33CC00',
+						'border-radius': '10px'
+					});
+					$("div").fadeOut(3000);
+
+					
+				},
+				error: function(message) {
+					
+					$("div").text(message);
+					$("div").fadeIn(1000);
+					$("div").css({
+						'background-color': '#B00000',
+						'border': '1px solid #B00000',
+						'border-radius': '10px'
+					});
+					$("div").fadeOut(3000);
+					
+				}
+			};
+		}
+	}(jQuery));
+	var msgBox = $('#message-box').messageBox();
+	
+	$("input[name='success']").click(function(){
+
+		$("div").remove("div");
+		$("body").append("<div id='message-box'></div>");
+		$("div").css("display", "none");
+		msgBox.success("Success message");
+
+		
+	});
+	
+	$("input[name='error']").click(function(){
+		$("div").remove("div");
+		$("body").append("<div id='message-box'></div>");
+		$("div").css("display", "none");
+		msgBox.error("Error message");
+	});
+	
+	
+</script>
+</html>

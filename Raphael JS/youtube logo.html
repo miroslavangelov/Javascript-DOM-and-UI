@@ -1,0 +1,42 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<style>
+	svg {
+		border: 1px solid black;
+	}
+</style>
+</head>
+<body>
+
+<script src="raphael-min.js"></script>
+<script>
+	var paper = Raphael(50, 50, 450, 150);
+	
+	
+	paper.text(100, 80, 'You')
+		.attr({
+			"font-size": 80,
+			"stroke": 'bold',
+			"fill": "#585858",
+			"stroke":"#585858"
+	})
+	.scale(1.15, 1.5);
+	
+	paper.rect(180, 10, 240, 130, 35, 35)
+		.attr({
+			"fill": "red",
+			"stroke":"red"
+	});
+	
+	paper.text(300, 80, 'Tube')
+		.attr({
+			"font-size": 80,
+			"stroke": 'bold',
+			"fill": "white",
+			"stroke":"white"
+	})
+	.scale(1.15, 1.5);
+</script>
+</body>
+</html>

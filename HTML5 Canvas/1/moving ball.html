@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<style>
+canvas {
+	border: 2px solid black;
+}
+</style>
+<body>
+<canvas id="the-canvas" width="800" height="500" />
+
+</body>
+<script>
+
+	var canvas = document.getElementById("the-canvas");
+	var ctx = canvas.getContext("2d");
+	
+	ctx.fillStyle = "blue";
+	ctx.strokeStyle = "blue";
+	var x = 200,
+		y = 300,
+		directionX = 4,
+		directionY = 4;
+	function drawBall (x, y) {
+		ctx.beginPath();
+		ctx.arc(x+=1, y+=1, 15, 0, 2*Math.PI, false);
+		ctx.fill();
+		ctx.stroke();
+	}
+	setInterval(function() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+		drawBall (x, y);
+		if (x < 15 || x > canvas.width - 15) {
+			directionX = -(directionX);
+		} 
+		else if (y < 15 || y > canvas.height - 15) {
+			directionY=-(directionY);
+		}
+				x+=directionX;
+				y+=directionY;
+	}, 10);
+
+</script>
+</html>
